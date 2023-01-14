@@ -128,3 +128,67 @@ checkBaggage('I have a laptop, some Food and a pocket Knife');
 checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
 ////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+//Working with Strings part 3:-
+console.log('a+very+nice+string'.split('+'));
+console.log('Jonas Schmedtmann'.split(' '));
+
+//destructuring in split method:
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+console.log(firstName, lastName);
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join('---');
+console.log(newName);
+
+//example:
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const nameUpper = [];
+
+  for (const n of names) {
+    // nameUpper.push(n[0].toUpperCase()+ n.slice(1));
+    nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(nameUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davis');
+capitalizeName('jonas schmedtmann');
+
+//Padding: padding a string means to add a number of characters to the
+string until the string has a certain desired length.
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '-').padEnd(30, '-'));
+console.log('jonas'.padStart(25, '-').padEnd(30, '-'));
+
+//credit card masking example:
+const maskCrediCard= function(number){
+  //convert number to string:
+  //1st way:
+  // const str= String(number);
+  //2nd way:
+  const str= number+ '';
+  const last= str.slice(-4);
+  console.log(last.padStart(str.length, '*')); 
+}
+
+maskCrediCard(4394530934579);
+maskCrediCard('3429734959845343593489');
+maskCrediCard(5348499956);
+
+//Repeat method: airport repeating message example:
+const message2= 'Bad weather... All Departures Delayed... ';
+console.log(message2.repeat(5));
+
+//2nd example: planes are waiting in line,
+const planesInLine= function(n){
+  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+}
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+////////////////////////////////////////////////
+
+
