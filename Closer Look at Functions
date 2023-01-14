@@ -86,3 +86,38 @@ is memory address of the object, however that reference itself is still a value,
 it's simply a value that contains a memroy address. So basically we pass a reference
 to the function but we do not pass by reference and this is an important distincition.
 /////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+//Fucntions accepting callback functions:-
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+//Higher order function: takes-in the function:
+const transformer = function (str, fn) {
+  console.log(`Original String: ${str}`);
+  console.log(`Transformed String: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('JavsScript is the best!', upperFirstWord);
+
+transformer('JavsScript is the best!', oneWord);
+//transformer is higher order function and fn is callback function.
+
+//Javascript uses call backs all the time:
+//advantages: makes code more readable
+//2. abstraction: the higher function doesn't care about how things are getting done, it just wanna get his function done.
+
+const high5 = function () {
+  console.log('🙌');
+};
+
+document.body.addEventListener('click', high5);
+
+['Jonas', 'Martha', 'Adam'].forEach(high5);
