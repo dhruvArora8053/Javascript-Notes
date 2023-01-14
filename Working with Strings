@@ -37,9 +37,94 @@ checkMiddleSeat('11B');
 checkMiddleSeat('23C');
 checkMiddleSeat('2E');
 
-//string is a primitive and primitives have no methods but our string has lots of them, it is because when we call a method javascript automatically converts string into an object and when the operations are done object is converted back to a regular string primitive.
+//string is a primitive and primitives have no methods but our string has lots of them,
+it is because when we call a method javascript automatically converts string into an object
+and when the operations are done object is converted back to a regular string primitive.
 console.log(new String('Jonas'));
 console.log(typeof new String('Jonas'));
 
 //and infact all string methods return primitives even if called on a string object.
 console.log(typeof new String('Jonas').slice(1));
+
+/////////////////////////////////////////////////
+//Working with String Part-2:-
+const airline = 'TAP Air Portugal';
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+console.log('jonas'.toUpperCase());
+
+//Practicle example: to fix capitalization in a passenger name:
+const passenger = 'jOnAs';
+
+const passengerLower = passenger.toLowerCase();
+
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+
+console.log(passengerCorrect);
+
+//2. comparing emails:
+const email = 'hello@jonas.io';
+const loginEmail = '   Hello@Jonas.Io \n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+
+console.log(trimmedEmail);
+
+//above process in one line:
+const nomalizedEmail = loginEmail.toLowerCase().trim();
+console.log(nomalizedEmail);
+console.log(email === nomalizedEmail);
+//this is a bit similar to what we did before with the maps set method,
+loginEmail.toLowerCase() will return new string and on string we can call
+string methods so we used trim further to normalize our email.
+
+//also trimStart and trimEnd
+
+//replacing example:
+const priceGB = '299,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+
+//note: these methods make brand new strings it doesn't mutate the original one and these all methods are case sensitive.
+
+//2. example:
+const announcement =
+  'All passengers come to the boarding door 23. Boarding door 23!';
+
+//only replaces one:
+console.log(announcement.replace('door', 'gate'));
+//replaces all:
+// console.log(announcement.replaceAll('door','gate'));
+//with regualar expression,
+console.log(announcement.replace(/door/g, 'gate'));
+
+//Methods which return booleans:
+const plane = 'Airbus A320neo';
+
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+console.log(plane.startsWith('Aib'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the new airbus family.');
+}
+
+//Practice excercise:
+const checkBaggage = function (items) {
+  //when we recieve input from a user we usally start putting everything to lowercase becase that's makes it a lot easier to compare it to something.
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board');
+  } else {
+    console.log('Welcome Abord!');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+////////////////////////////////////////////////
