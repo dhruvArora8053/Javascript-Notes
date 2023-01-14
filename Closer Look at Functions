@@ -121,3 +121,25 @@ const high5 = function () {
 document.body.addEventListener('click', high5);
 
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+//////////////////////////////////////////////
+//Functions returning function:-
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steven');
+//here greet('Hey') returning the function which is stored in greetHey and when we call greetHey it runs and prints Hey jonas or steven.
+
+greet('hello')('jonas');
+//here greet('hello') returning function and simultaneously we have provided other argument for return fucntion and so it is giving output of hello jonas.
+
+//Arrow representation of above function:
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+greetArr('hi')('jonas');
+///////////////////////////////////////////////
