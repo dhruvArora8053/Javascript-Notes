@@ -1,0 +1,58 @@
+////////////////////////////////////////////////
+//This keyword in practice:-
+console.log(this);
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this); //giving undefined because we are in strict mode but in sloppy mode it will be the global object.
+};
+
+calcAge(1991);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+
+calcAgeArrow(1980);
+//at above 'calcAge' fucntion this was undefined but in this arrow function it is showing window object,
+well it is because the arrow function does not gets it's own this keyword so instead the arrow function 
+simply uses the lexical this keyword which means that it uses the this keyword of it's parent function or
+of it's parents scope.
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+};
+
+jonas.calcAge();
+
+//in this case when we have a method call the this keyword inside of a method will be the object that is
+calling the method and in this case that is the jonas object so jonas here basically is the owner of the
+method and therefore inside of calcAge this keyword id jonas.
+
+//Note: we might think that this keyword will point to the object that is calling the method and that means
+that the this keyword will not simply point at the object in which we wrote the method so here we write the
+calcAge mehtod inside of the jonas object and we might think that is the reason why the this keyword points
+to jonas but that is not true the reason that the this keyword will point to jonas in this case is because 
+the jonas was the object calling debt method and that's a subtle and very importand difference.
+
+const matilda = {
+  year: 2017,
+};
+
+matilda.calcAge = jonas.calcAge;
+console.log(matilda); // this is called method borrowing copying method from one object to the other so we borrowed calcAge method from jonas to matilda.
+
+matilda.calcAge();
+// so which object calls the method the this keyword will point to that object.
+
+const f= jonas.calcAge; //it is possible because function is just a value
+console.log(f);
+
+f(); //so here this keyword in now undefined, this happens because this f function is now just a regular function
+call, it is not attached to any object, there is no owner of this f function.
+/////////////////////////////////////////////////
