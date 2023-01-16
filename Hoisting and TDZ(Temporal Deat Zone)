@@ -59,4 +59,5 @@ console.log(x===window.x);
 console.log(y===window.y);
 console.log(z===window.z);
 //var x is the property of window object but const y and let z are not.
+
 ////////////////////////////////////////////////
