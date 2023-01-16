@@ -1,0 +1,62 @@
+////////////////////////////////////////////////
+//Hoisting and TDZ(Temporal Dead Zone) in practice:-
+
+//Hoisting with varibales:
+console.log(me); //undefined because of traditional feature
+//console.log(job); //in the temporal dead zone
+//console.log(year);//in the temporal dead zone
+
+var me = 'Jonas';
+let job = 'teacher';
+const year = 1991;
+
+//Hoisting with functions:-
+//function declaration:
+console.log(addDecl(2,3)); 
+//console.log(addExpr(2,3)); //temporal dead zone
+//console.log(addArrow(2,3)); //temporal dead zone
+
+console.log(addExprVar); // var is undefined
+//console.log(addExprVar(2,3)); //addExprVar is undefined and therefore not a function
+
+function addDecl(a, b) {
+  return a + b;
+}
+
+//fucntion expression:
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+//arrow function:
+const addArrow = (a, b) => a + b;
+
+//function expression with var:-
+var addExprVar= function(a,b){
+    return a+b;
+}
+
+
+//Example for pitfall of hoisting:
+console.log(numProducts);
+if(!numProducts){
+    deleteShoppingCart();
+}
+
+var numProducts=10;
+
+function deleteShoppingCart(){
+    console.log('All products deleted');
+}
+
+
+var x=1;
+const y=2;
+let z=3;
+
+console.log(window);
+console.log(x===window.x);
+console.log(y===window.y);
+console.log(z===window.z);
+//var x is the property of window object but const y and let z are not.
+////////////////////////////////////////////////
