@@ -205,3 +205,68 @@ book.apply(swiss, flightData);
 //the apply method is not used that anymore in modern javascript because we can use the spread operator:
 book.call(swiss, ...flightData);
 /////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+//The bind method:-
+const bookEw = book.bind(eurowings);
+//we can use the bind method to create a new function with the this keyword also set to eurowings and bind method will not call the book function instead it will return a new function where the this keyword will always be set to eurowings.
+bookEw(23, 'Steven Williams');
+//and as you can see this now looks like the normal book function call and that's because this function here has already has the this keyword set in stone.
+
+//for all airlines:
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+//we can take this bind function even further:
+const bookEW23 = book.bind(eurowings, 23);
+//here we set the flightNum argument in stone already for eurowings and we just have to pass the name as an argument when we call this function like down here:
+bookEW23('Jonas Schmedtmann');
+bookEW23('Martha Cooper');
+
+//Bind method with event listeners:
+lufthansa.planes = 300;
+lufthansa.buyplane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+  //this.planes is NaN and reason for that is that this keyword is the "Buy new plane" button element it is because that in an even handler function that this keyword always points to the elmement on which that handler is attached to.
+};
+
+//document.querySelector('.buy').addEventListener('click', lufthansa.buyplane);
+//here lufthansa.buplane is an handler function and it is attached to "document.querySelector('.buy')" and therfore inside of the handler function this keyword will point to the button element so that's why above console.log(this); returns button.
+
+//lufthansa.buyplane();
+//this will work alright because it is outside of addEventListener.
+
+//Solution:
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyplane.bind(lufthansa));
+//here will not use the call method because it calls the function but bind makes a new function and this keyword is set to lufthansa.
+
+//Partial application:
+//partial application means that we can preset parameters which means parameter will remain constant whenever we use that funciton.
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200)); //general tax
+
+const addVat = addTax.bind(null, 0.23); //in portugal tax is 23% so we can use the bind function to preset the tax percentage
+//now it would look like addVat= value =>value + value*0.23;
+//in this case we don't care about this keyword at all it's not even in the function ans so we just say null it could be any other value because nothing will happen with it and it's kinda standard to use null and keep in mind that the order of the arguments is important if you want to preset the rate then it has to be the first argument in above addVat function otherwise it wil not work.
+//Now you could argue that what we just did here could easily have been done by default parameters but this is actually different because bind method here is creating a brand new simply more specific function base on a more general function which is the addTax function and the example here could be more complex too so this realy is different because using binds actually it really gives us a new function. So it's as we returned a new specific funtion from the addTax function.
+
+console.log(addVat(100));
+console.log(addVat(23));
+
+//same example done by return function:
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * 0.23; 
+  };
+};
+
+const addVat2= addTaxRate(0.23);
+console.log(addVat2(100));
+console.log(addVat2(23));
+/////////////////////////////////////////////////
