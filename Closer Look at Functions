@@ -143,3 +143,65 @@ const greetArr = greeting => name => console.log(`${greeting} ${name}`);
 
 greetArr('hi')('jonas');
 ///////////////////////////////////////////////
+
+///////////////////////////////////////////////
+//The call and apply methods:-
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Jonas Schmedtmann');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+//book(23, 'Sarah Williams');
+//output: Error, it is because now book is a normal function outside of the object when you call it the this keyword will have the property of undefined.
+
+//Call method:
+//remember functions are also objects so they can have there own methods,
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+//this time we did not call the book function ourselves instead we called the 'call' method and it's then this call method which will call the book function with the this keyword set to eurowings so whatever we pass as the first argument of the call method. And so this allows us to manually and explicitly set the this keyword of any function that we want to call. Then all the arguments after the first one are simply the arguments of original function.
+console.log(eurowings.bookings);
+//now on eurowings.bookings we have one booking
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+console.log(lufthansa.bookings);
+//now on lufthansa.bookings we have three bookings
+
+//Another Object:
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss,583,'John Wick');
+
+//Apply method: 
+//apply method does exactly the same thing like call method but the only difference is that apply does not recieve a list of arguments after the this keyword but instead it's gonna take an array of the arguments.
+
+const flightData= [583,'George Cooper'];
+book.apply(swiss, flightData);
+
+//the apply method is not used that anymore in modern javascript because we can use the spread operator:
+book.call(swiss, ...flightData);
+/////////////////////////////////////////////////
