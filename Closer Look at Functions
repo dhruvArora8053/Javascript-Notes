@@ -205,4 +205,3 @@ book.apply(swiss, flightData);
 //the apply method is not used that anymore in modern javascript because we can use the spread operator:
 book.call(swiss, ...flightData);
 /////////////////////////////////////////////////
-rgewtwet 
