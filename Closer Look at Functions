@@ -313,3 +313,97 @@ booker();
 console.dir(booker); 
 //this is showing property of closure in the console and note closure is interal property we cannot call those
 varibales in our code whenever we want through its help.
+
+/////////////////////////////////////////////////
+//Closures:-
+//It is the internal property of the function which helps to store all the parent variables for the local function
+so that in future if local function needs those variables even after the end of execution context it can use.
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+//so the booker function using passengerCount variable even secureBooking execution context from stack has been
+ended so here closure is working.
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+//this is showing property of closure in the console and note closure is interal property we cannot call those varibales
+in our code whenever we want through its help.
+
+//Closure Examples:-
+//1.
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g(); //here 23 assigned to  a function assigned to f
+f(); //Ouptut:46, f is still using varibale a even g function has already finished so this is an example of closure.
+
+//Re-assigning f
+h();
+f(); //Output: 1554, because of closure and it does indeed have the value of b and now it no longer has the value of a.
+console.dir(f);
+//in our case here, the function was kind of born inside g first and then it was essentially reborn again in h and so
+first the closure contained the a variable of its first birth place and then as it was reborn to follow our analogy then it
+remembered the b variable off its birthplace.
+
+//2.
+/*
+setTimeout(function () {
+  console.log('timer');
+}, 1000);
+*/
+//it is a callback function which does it's function after set time.
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(() => {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180,3);
+//so immediately when we call this function perGroup vairable will be created,
+//then setTimeout will be called and it will basically register the callback function and that then will be
+called after 3 seconds but immediately last console.log will also be called,
+//so this console.log here will not wait these three seconds for these set time out callback to finish.
+//keep in mind that callback funtion here was executed completely independently from the boardPassengers funtion
+but still the callback funtion was able to use all the variables(n,wait, pergrgroup) that were in the variable
+environment in which it was created. And one more time this is a clear sign of a closure being created. 
+
+//const perGroup=1000;
+//closure does in fact have priority over the scope chain so here in the global scope we alSO created perGroup
+variable and so if we commented out above perGroup=n/3 variable then it will take perGroup=1000 variable even
+though the boardingPassengers has already been over.
+/*Output:
+Will start boarding in 3 seconds
+389 We are now boarding all 180 passengers
+390 There are 3 groups, each with 1000 passengers
+*/
+//////////////////////////////////////////////////
