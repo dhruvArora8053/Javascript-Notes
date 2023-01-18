@@ -287,3 +287,29 @@ const addVat2= addTaxRate(0.23);
 console.log(addVat2(100));
 console.log(addVat2(23));
 /////////////////////////////////////////////////
+
+//Closures:-
+//It is the internal property of the function which helps to store all the parent variables for the local
+function so that in future if local function needs those variables even after the end of execution context 
+it can use.
+
+const secureBooking = function(){
+  let passengerCount=0;
+
+  return function(){
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  }
+}
+
+const booker= secureBooking();
+//so the booker function using passengerCount variable even secureBooking execution context from stack has
+been ended so here closure is working.
+
+booker();
+booker();
+booker();
+
+console.dir(booker); 
+//this is showing property of closure in the console and note closure is interal property we cannot call those
+varibales in our code whenever we want through its help.
