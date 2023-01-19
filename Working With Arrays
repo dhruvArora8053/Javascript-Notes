@@ -39,3 +39,21 @@ console.log(letters.join('-'));
 
 //already known methods: push, unshift, pop, shift, indexof and includes. 
 //////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//at method:-
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+//special particularity of at method:-
+//getting last array element
+//traditional,
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+//at method:
+console.log(arr.at(-1));
+
+//on strings:
+console.log('jonas'.at(0));
+console.log('jonas'.at(-1));
+/////////////////////////////////////////////////
