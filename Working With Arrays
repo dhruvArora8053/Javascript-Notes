@@ -124,3 +124,28 @@ back function.
 //cannot use continue&break in forEach in forOf can so forEach will always loop over the entire
 array and there is nothing that you can do about it.
 
+//forEach with Maps and Sets:
+//with map:
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+//With Set:
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+
+currenciesUnique.forEach(function (value, key, set) {
+  console.log(`${key}: ${value}`);
+});
+//key here is exactly same as the value so why is that well a set doesn't have keys and it doesn't have
+indexes either and so there is no value that would make sense for the key and so essentialy key above 
+makes no sense at all it wouldn't even have to be there and so the people who designed this forEach method 
+for sets they could've simply omitted the second argument, right? Well if they did that then this forEach 
+would have been different from the others and so that would then create confusion in developers and therefore 
+it was decided to keep the same signature.
