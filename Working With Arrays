@@ -57,3 +57,70 @@ console.log(arr.at(-1));
 console.log('jonas'.at(0));
 console.log('jonas'.at(-1));
 /////////////////////////////////////////////////
+/////////////////////////////////////////////////
+//Looping Arrays forEach:-
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//with for of
+for (const movement of movements) {
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+//with forEach:
+console.log('------FOREACH--------');
+
+movements.forEach(function (movement) {
+  if (movement > 0) {
+    console.log(`You deposited ${movement}`);
+  } else {
+    console.log(`You withdrew ${Math.abs(movement)}`);
+  }
+});
+
+//0: function(200)
+//1: function(450)
+//2: function(400)...and so on.
+//here inside forEach there is a call back function and in each iteration it will take the
+argument which is an index value itself.
+
+//We use a callback function to tell other higher order function exactly what it should do
+and so in this case we tell forEach that in each iteration it should log one of above two 
+strings here to the console.
+
+//extracting index with for of:
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+//extracting index with forEach method:
+console.log('------FOREACH--------');
+
+movements.forEach(function (movement, index, array) {
+  if (movement > 0) {
+    console.log(`Movement ${index + 1}: You deposited ${movement} ${array}`);
+  } else {
+    console.log(
+      `Movement ${index + 1}: You withdrew ${Math.abs(movement)} ${array}`
+    );
+  }
+});
+
+//of course we can just use one parameter like we have been doing or we can just use two or
+we can use all three together and as always the names here do not matter at all but what does 
+matter is the order. So the first parameter always needs to be the current element and second
+parameter always the current index and the third one always the entire array that we are looping
+over because that's the order in which arguments so the actual values are passed into our call
+back function.
+
+//forEach vs for of loop:
+//cannot use continue&break in forEach in forOf can so forEach will always loop over the entire
+array and there is nothing that you can do about it.
+
