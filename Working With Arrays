@@ -261,4 +261,12 @@ for (const mov of movements) {
 console.log(balance2);
 //here in this you have to declare the extra variable 'balance2' to get the desired result which
 is a limitation of forOf over reduce method.
+
+//example-find max value:
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+
+console.log(max);
 //////////////////////////////////////////////////
