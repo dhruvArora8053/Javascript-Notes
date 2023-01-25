@@ -149,3 +149,64 @@ makes no sense at all it wouldn't even have to be there and so the people who de
 for sets they could've simply omitted the second argument, right? Well if they did that then this forEach 
 would have been different from the others and so that would then create confusion in developers and therefore 
 it was decided to keep the same signature.
+
+////////////////////////////////////////////////
+//Map method:-
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const euroToUSD = 1.1;
+
+const movementsUSD = movements.map(function (mov) {
+  return mov * euroToUSD;
+  //return 23;
+});
+console.log(movements);
+console.log(movementsUSD);
+//map method does not mutate the existing array it will make the copy of existing array
+and this is used where we have do some operations on array elements
+
+//with arrow:
+const movementsUSDarrow = movements.map(mov => mov * euroToUSD);
+console.log(movementsUSDarrow);
+
+//with for of:
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * euroToUSD);
+}
+console.log(movementsUSDfor);
+//same result but this approach is not so ideal
+
+//extracting val,i,arr in map:
+const movementsDescription = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+
+  // if (mov > 0) {
+  //   return `Movement ${i + 1}: You deposited ${mov}`;
+  // } else {
+  //   return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
+  // }
+);
+console.log(movementsDescription);
+//so one more time all we do here is to pass this callback funtion into map method but we
+do not call this function by ourselves it is the map mehtod who will call this function for
+each of the array elements in the movement array. Now each time that the map method calls or
+callback it will simply pass in the current array element as well as the current index and 
+the whole array.
+
+
+//map vs foreach:
+//now you could say that what we did above there with this map method is essentially the same
+as what we did with the for each method but infact there is a bid difference between these two
+approaches so before we printed each line individually to the console as we were looping over
+the array so in each of the iterations we performed some action that was then visible in the
+console and we can call this a side effect. So  the forEach method creates side effects but now
+here with this map mehtod all we did was to return each of the strings from the callback and so
+basically they got added into a new array and then we finally logged that entire array to the
+console not elements one by one. And so here in this map method we did not create a side effect
+in each of the iteration all we did was to build a brand new array and this idea of side effects 
+will become important again as we talk more about functional programming.
+///////////////////////////////////////////////// 
