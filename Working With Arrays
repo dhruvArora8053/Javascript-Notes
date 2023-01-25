@@ -234,3 +234,31 @@ the four of loop for everything and the reason for that is again the push that e
 using more functional code like this but there's also a more practical implication here and that's
 because we can actuall chain all of these methods together.
 //////////////////////////////////////////////////
+///////////////////////////////////////////////
+//Reduce method:-
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+//accumulator SNOWBALL
+const balance = movements.reduce(function (acc, val, i, arr) {
+  console.log(`Iteration ${i}: ${acc}`);
+  return acc + val;
+}, 0);
+
+console.log(balance);
+//acc is the accumulator which will take the return value in each iteration and aggregate the
+whole process and reduce method has second parameter which is the initial value of acc.
+
+//with arrow:
+const balance1 = movements.reduce((acc, val, i, arr) => acc + val, 0);
+console.log(balance1);
+
+//with forOf:
+let balance2 = 0;
+for (const mov of movements) {
+  balance2 += mov;
+}
+console.log(balance2);
+//here in this you have to declare the extra variable 'balance2' to get the desired result which
+is a limitation of forOf over reduce method.
+//////////////////////////////////////////////////
