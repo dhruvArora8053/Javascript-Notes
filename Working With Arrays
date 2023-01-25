@@ -210,3 +210,27 @@ console not elements one by one. And so here in this map method we did not creat
 in each of the iteration all we did was to build a brand new array and this idea of side effects 
 will become important again as we talk more about functional programming.
 ///////////////////////////////////////////////// 
+
+/////////////////////////////////////////////////
+//Filter method:- it will filter out the required elements from the array and will create a new array
+//filtering out the negative values:
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const deposits = movements.filter(function (mov,i, arr) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
+
+//with for of loop:
+const depostisFor = [];
+for (const mov of movements) mov > 0 ? depostisFor.push(mov) : null;
+console.log(depostisFor);
+
+//and so you could again ask what is the big difference here like what's the big deal why not just use
+the four of loop for everything and the reason for that is again the push that exists in javascript 
+using more functional code like this but there's also a more practical implication here and that's
+because we can actuall chain all of these methods together.
+//////////////////////////////////////////////////
