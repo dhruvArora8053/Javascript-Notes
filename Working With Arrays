@@ -286,3 +286,22 @@ console.log(totalDepositsUSD);
 //and if by chance you have made some mistake in chaining you can always check inbetween by
 using console.log() 
 ///////////////////////////////////////////////
+//////////////////////////////////////////////////
+//Find method:- it returns an element of the array
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+//here we retrieved all the negative values and find has given the first negative element of the array.
+
+//with forOf:
+let arr=[];
+for(const mov of movements){
+  if(mov<0){
+    arr.push(mov)
+  }
+}
+console.log(arr);
+console.log(arr[0]);
+//////////////////////////////////////////////////
