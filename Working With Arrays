@@ -310,3 +310,26 @@ console.log(arr[0]);
 
 //Note: both the find and findIndex methods get access to also the current index and the current entire array.
 /////////////////////////////////////////////////
+///////////////////////////////////////////////
+//Some and Every method:-
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+console.log(movements.includes(-130));
+//includes method check equality like above here if -130 is exactly equal to the element in
+an array then it outputs true but what if we want to check condition that's where some method 
+gets handy:
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+const anyDeposits1 = movements.some(mov => mov > 5000);
+console.log(anyDeposits1);
+
+const anyDeposits2 = movements.some(mov => mov > 1500);
+console.log(anyDeposits2);
+//here we can specify condition
+
+//Every method: it is close cousin of some so as the name says all the elements of the array 
+satisfy certain condition then it return true
+console.log(movements.every(mov=>mov>0));
+///////////////////////////////////////////////
