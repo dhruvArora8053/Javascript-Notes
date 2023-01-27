@@ -305,3 +305,8 @@ for(const mov of movements){
 console.log(arr);
 console.log(arr[0]);
 //////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//The findIndex mehtod: cousin of find method but it returns index after checking certain condition.
+
+//Note: both the find and findIndex methods get access to also the current index and the current entire array.
+/////////////////////////////////////////////////
