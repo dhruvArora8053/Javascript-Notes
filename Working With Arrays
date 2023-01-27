@@ -343,3 +343,23 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 ///////////////////////////////////////////////
+///////////////////////////////////////////////
+//flat and flatMap method:-
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+//flat here take all elements in the separate array and put all these altogether in a single array.
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat());
+console.log(arrDeep.flat(1));
+//flat method only going here one level deep when flattening the array
+
+console.log(arrDeep.flat(2)); //now it two level deep
+
+//flatMap method: now it turns out using a map first and then flattening the result is a pretty
+common operation so first we map then we flat that result and so to solve this there is another 
+method which is flatMap.
+//So flatMap essentially combines a map and a flat method into just one method which is better 
+for performance and remember it only goes only one level deep and we cannot change it so if you
+do need to go deeper than just one level you still need to use the flat method.
+//////////////////////////////////////////////////
