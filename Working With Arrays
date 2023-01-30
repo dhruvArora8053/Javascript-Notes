@@ -376,7 +376,10 @@ console.log(owners);
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 console.log(movements);
 console.log(movements.sort());
-//it didn't sort because the sorting method does sorting based on strings so basically what it does is to convert everything to strings and then it does the sorting itself and if we look at the result as if they were strings then the result actually makes sense so this '-' always comes first and it sorted based on first letter of the values.
+//it didn't sort because the sorting method does sorting based on strings so basically what
+it does is to convert everything to strings and then it does the sorting itself and if we look
+at the result as if they were strings then the result actually makes sense so this '-' always 
+comes first and it sorted based on first letter of the values.
 
 //Working solution:
 console.log(movements);
@@ -407,4 +410,51 @@ console.log(movements);
 //if a>b then a-b will be +ve
 //if a<b the a-b wiil be -ve 
 //same as above ascending order method.
+/////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//Creating and Filling arrays:-
+//manually:
+console.log([1, 2, 3, 4, 5, 6, 7]);
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+//Empty array and Fill method:
+//generating:
+const x = new Array(7);
+console.log(x);
+//it will create an empty array of length seven and here we can only appy one method that is:
+//fill method: mutates array
+x.fill(1);
+console.log(x);
+
+const y = new Array(7);
+console.log(y.fill(1, 3, 5)); //1 is data and 3 is index from where it will start to fill and just like slice 5th idex will not be included
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+arr.fill(23, 4, 6);
+console.log(arr);
+
+//Array.from(): here Array is a function in which we applied from method
+const z = Array.from({ length: 7 }, () => 1);
+console.log(z);
+//here ()=>1 is a callback function
+
+const a = Array.from({ length: 7 }, (val, i) => i + 1);
+console.log(a);
+
+const diceRoll100 = Array.from({ length: 100 }, val =>
+  Math.trunc(Math.random() * 6 + 1)
+);
+console.log(diceRoll100);
+
+//Array.from() is basically made to convert maps, sets and other iterables to array.
+//Example queryselectorAll() return node list and it is in UI so we want to bring to code editor:
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),el => Number(el.textContent.replace('€', ' '))
+  );
+  console.log(movementsUI);
+
+  const movementUI2= [...document.querySelectorAll('.movements__value')]
+});
 /////////////////////////////////////////////////
