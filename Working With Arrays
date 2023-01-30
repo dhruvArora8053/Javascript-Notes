@@ -363,3 +363,48 @@ method which is flatMap.
 for performance and remember it only goes only one level deep and we cannot change it so if you
 do need to go deeper than just one level you still need to use the flat method.
 //////////////////////////////////////////////////
+///////////////////////////////////////////////
+//Sorting Arrays:-
+
+//sort method: it mutates the original array
+//with stirngs:
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
+console.log(owners);
+
+//with numbers:
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+console.log(movements.sort());
+//it didn't sort because the sorting method does sorting based on strings so basically what it does is to convert everything to strings and then it does the sorting itself and if we look at the result as if they were strings then the result actually makes sense so this '-' always comes first and it sorted based on first letter of the values.
+
+//Working solution:
+console.log(movements);
+//return < 0, A, B  (keep order)
+//return > 0, B, A  (switch order)
+//ascending order:
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (a < b) return -1;
+});
+console.log(movements);
+//descending order:
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (a < b) return 1;
+});
+console.log(movements);
+//here in callback funtion a is current element and b is next consecutive element.
+
+//refactor:
+//ascending order:
+movements.sort((a, b) => a - b);
+console.log(movements);
+//descending order:
+movements.sort((a, b) => b - a);
+console.log(movements);
+//here we just want to return any positive or negative number to make this callback function work so
+//if a>b then a-b will be +ve
+//if a<b the a-b wiil be -ve 
+//same as above ascending order method.
+/////////////////////////////////////////////////
