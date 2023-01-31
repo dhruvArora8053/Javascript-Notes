@@ -824,3 +824,46 @@ console.log(PI);
 console.log(Number('230_000')); //NaN
 console.log(parseInt('230_000')); //230
 //////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//Working with BigInt:-
+//Total number bits=64
+//number represent bits= 53
+//rest for= decimal and operator
+console.log(2 ** 53 - 1); //9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); //9007199254740991
+//biggest number that can represent by javascript safely any number bigger than this cannot represent by javascript safely
+
+//not correct:
+console.log(2 ** 53 + 1); //9007199254740992
+console.log(2 ** 53 + 0); //9007199254740992
+
+//from 2020 now we can store no matter how a big number is because of BigInt
+console.log(4357962080794597523907894523n);
+console.log(BigInt(43579620807));
+
+//Operations
+console.log(10000n + 10000n);
+console.log(805549723643865979759794579854795817n * 453686846538n);
+
+const huge = 5348683546865926896453894635879n;
+const num = 23;
+console.log(huge * BigInt(num)); //need to conver num first to bigInt then operations can be applicable
+
+//Exceptions:
+console.log(20n > 15); //true
+console.log(20n === 20); //false
+console.log(typeof 20n); //bigint
+console.log(20n == 20); //true because of tyep coercion
+
+console.log(huge + ' is REALLY big!!!');
+
+//math function are not appplicable on bigInt:
+//console.log(Math.sqrt(16n)); //error
+
+//Divisions:
+console.log(10n / 3n); //3n it returns closest bitint, it cuts off the decimal part
+console.log(10/3); //3.3333333333333335
+
+console.log(11n/3n); //3n
+console.log(12n/3n); //4n
+//////////////////////////////////////////////////
