@@ -1,2 +1,2 @@
 # Javascript-Notes
-Javascript notes for important stuff.
+Javascript notes for important stuff(made by me).
